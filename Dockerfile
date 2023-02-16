@@ -4,8 +4,7 @@ RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         cron \
         wget \
-        ca-certificates \
-        inotify-tools
+        ca-certificates
 
 ENV \
     SCRIPT_DIR="/scripts" \
@@ -14,12 +13,6 @@ ENV \
     CRON_SCHEDULE="*/15 * * * *" \
     SCRIPT_REGEX="^.*\.sh\$" \
     RUN_SCRIPTS_ON_STARTUP="NO" \
-    INOTIFY_ENABLE="YES" \
-    INOTIFY_LOG_FILE="/data/inotify.log" \
-    INOTIFY_FMT="%T %e %w %f" \
-    INOTIFY_TIMEFMT="%Y-%m-%d %H:%M:%S %z" \
-    INOTIFY_EVENTS="CREATE" \
-    INOTIFY_OPTS="-r" \
     EXTRA_INSTALL="" \
     NODE_EXPORTER_VERSION="1.5.0" \
     NODE_EXPORTER_ARCH="linux-amd64" \

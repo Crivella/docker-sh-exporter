@@ -34,16 +34,6 @@ if [[ "${RUN_SCRIPTS_ON_STARTUP,,}" == "yes" ]]; then
     run-parts --test --regex=${SCRIPT_REGEX} ${SCRIPT_DIR}
     run-parts --regex=${SCRIPT_REGEX} ${SCRIPT_DIR}
 fi
-if [[ "${INOTIFY_ENABLE,,}" == "yes" ]]; then
-    echo "Starting inotifywait daemon..."
-    INOTIFY_EVENTS="`echo ${INOTIFY_EVENTS} | tr -s "," " "`"
-    OPT="${INOTIFY_OPTS} "
-    for e in ${INOTIFY_EVENTS}; do
-        OPT+=" -e ${e^^}"
-    done
-    touch ${INOTIFY_LOG_FILE}
-    inotifywait -m -d -o ${INOTIFY_LOG_FILE} --format "${INOTIFY_FMT}" --timefmt "${INOTIFY_TIMEFMT}" ${OPT} ${MONITOR_DIR}
-fi
 
 echo "Starting cron daemon..."
 cron -L 4
