@@ -25,5 +25,6 @@ VOLUME ${COLLECT_DIR}
 EXPOSE 9781/tcp
 
 COPY entrypoint.sh /
+RUN chmod +x /entrypoint.sh
 
 ENTRYPOINT ["/entrypoint.sh"]
